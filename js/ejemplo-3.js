@@ -1,9 +1,9 @@
-const error = msg => console.log(msg);
+const printError = msg => console.log(msg);
 
-const realizarTarea = (tarea, siguientePaso, error) => {
+const realizarTarea = (tarea, siguienteTarea, printError) => {
   console.log(tarea);
-  if (Math.random() < 0.5) error();
-  else setTimeout(siguientePaso, 1000);
+  if (Math.random() < 0.3) printError();
+  else setTimeout(() => siguienteTarea(), 1000);
 };
 
 const servirTortitas = () => {
@@ -15,16 +15,16 @@ const servirTortitas = () => {
 };
 
 const freirTortitas = () => {
-  realizarTarea('Freir tortitas', servirTortitas, () => error('Error al freir tortitas'));
+  realizarTarea('Freir tortitas', servirTortitas, () => printError('Error al freir tortitas'));
 };
 const reposarMasa = () => {
-  realizarTarea('Reposar masa', freirTortitas, () => error('Error al reposar la masa'));
+  realizarTarea('Reposar masa', freirTortitas, () => printError('Error al reposar la masa'));
 };
 const mezclarIngredientes = () => {
-  realizarTarea('Mezclar ingredientes', reposarMasa, () => error('Error al mezclar ingredientes'));
+  realizarTarea('Mezclar ingredientes', reposarMasa, () => printError('Error al mezclar ingredientes'));
 };
 const prepararIngredientes = () => {
-  realizarTarea('Preparar ingredientes', mezclarIngredientes, () => error('Error al preparar ingredientes'));
+  realizarTarea('Preparar ingredientes', mezclarIngredientes, () => printError('Error al preparar ingredientes'));
 };
 
-mezclarIngredientes();
+prepararIngredientes();

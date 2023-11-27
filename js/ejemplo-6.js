@@ -1,7 +1,15 @@
-const double = n => n * 2;
+const thenFunction = number => {
+  console.log(number);
+};
+
+const printDoubleNumber = number => {
+  console.log(number * 2);
+};
+
+const catchAndPrint = err => console.log(err);
 
 const request = url => {
-  return (promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
     req.open('GET', url);
     req.onload = () => {
@@ -17,10 +25,9 @@ const request = url => {
     };
 
     req.send();
-  }));
+  });
 };
 
-request('/data.txt')
-  .then(data => double(data))
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
+request('../data/data.txt')
+  .then(data => printDoubleNumber(data))
+  .catch(err => catchAndPrint(err));
